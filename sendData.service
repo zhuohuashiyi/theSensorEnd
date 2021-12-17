@@ -1,0 +1,9 @@
+[Unit]
+Description=to store data and send data for an application
+After=syslog.target network.target remote-fs.target nss-lookup.target
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 /home/lighthouse/theSensorEnd/app.py
+Restart=on-failure
+[Install]
+WantedBy=multi-user.target
