@@ -6,12 +6,20 @@
 本项目部署在云端的一台centos机器上，使用systemd命令将项目
 运行为一个守护进程，service脚本如sendData.service。
 
+环境搭建：
+- nginx
+- python3
+- pip3
+- git
+
 在linux服务器端打开终端，输入
 ```
-sudo pip install theSensorEnd/requirements.txt
-git clone https://github.com/zhuohuashiyi/theSensorEnd
-sudo cp theSensorEnd/sendData.service /etc/system/systemd/sendData.service
-sudo systemd start sendData.service
+sudo pip3 install -i https://pypi.tuna.tsinghua.edu.cn/simple -r theSensorEnd/requirements.txt
+git clone https://github.com.cnpmjs.org/zhuohuashiyi/theSensorEnd
+sudo cp theSensorEnd/sendData.service /etc/systemd/system/sendData.service
+sudo cp theSensorEnd/sendData /etc/nginx/sites-enabled/sendData
+sudo nginx -s reload
+sudo systemctl start sendData
 ```
 即成功部署
 这时在本地访问`49.234.26.34:5000/list`（此处替换为你自己的服务器ip地址）
